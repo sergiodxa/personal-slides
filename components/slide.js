@@ -3,9 +3,25 @@ import Head from "next/head";
 import Router from "next/router";
 import { bool, number, string } from "prop-types";
 import cn from "classnames";
+import NProgress from "nprogress";
 import getKeyName from "../lib/get-key-name";
 import { ThemeProvider, ThemeConsumer } from "../lib/theme";
 import isServer from "../lib/is-server";
+import { styles } from "../lib/nprogress";
+
+let progressTimer = null;
+Router.onRouteChangeStart = () => {
+  progressTimer = setTimeout(NProgress.start, 300);
+};
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+  clearTimeout(progressTimer);
+};
+Router.onRouteChangeError = () => {
+  NProgress.done();
+  clearTimeout(progressTimer);
+};
+
 
 export default class extends Component {
   static propTypes = {
@@ -116,6 +132,7 @@ export default class extends Component {
                     color: white;
                   }
                 `}</style>
+                <style jsx global>{styles}</style>
                 <style jsx>{`
                   main {
                     display: flex;
