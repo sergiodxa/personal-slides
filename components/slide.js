@@ -81,6 +81,11 @@ export default class extends Component {
   };
 
   render() {
+    // prefetch previous and next slide page client side
+    if (!isServer) {
+      Router.prefetch(this.prevSlideURL);
+      Router.prefetch(this.nextSlideURL);
+    }
 
     return (
       <ThemeProvider value={this.props.dark}>
