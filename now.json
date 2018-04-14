@@ -3,5 +3,8 @@
   "alias": [
     "slides.now.sh",
     "slides.sergiodxa.com"
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "@env"
+  }
 }
