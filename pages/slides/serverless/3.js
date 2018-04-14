@@ -1,11 +1,17 @@
-import { Component } from 'react';
-import Slide from '../../../components/slide';
-import Title from '../../../components/title';
-import { List, Item } from '../../../components/list';
-import Link from '../../../components/link';
+import { Component } from "react";
+import Slide from "../../../components/slide";
+import Title from "../../../components/title";
+import { List, Item } from "../../../components/list";
+import Link from "../../../components/link";
 
 export default () => (
-  <Slide basePath="/slides/serverless" current={3} total={17} center>
+  <Slide
+    title="Types of Serverless"
+    basePath="/slides/serverless"
+    current={3}
+    total={17}
+    center
+  >
     <Title>Types of Serverless</Title>
     <List>
       <Item>

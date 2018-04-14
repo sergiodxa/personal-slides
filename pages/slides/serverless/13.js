@@ -1,13 +1,17 @@
-import { Component } from 'react';
-import Slide from '../../../components/slide';
-import Title from '../../../components/title';
-import { CodeSnippet, LN, Signature } from '../../../components/code';
+import { Component } from "react";
+import Slide from "../../../components/slide";
+import Title from "../../../components/title";
+import { CodeSnippet, LN, Signature } from "../../../components/code";
 
 export default () => (
-  <Slide basePath="/slides/serverless" current={13} total={17} dark>
-    <Title>
-      Now Universal
-    </Title>
+  <Slide
+    title="Now Universal"
+    basePath="/slides/serverless"
+    current={13}
+    total={17}
+    dark
+  >
+    <Title>Now Universal</Title>
     <Signature>
       <CodeSnippet>
         <LN>1</LN>

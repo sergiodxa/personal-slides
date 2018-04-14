@@ -1,13 +1,16 @@
-import { Component } from 'react';
-import Slide from '../../../components/slide';
-import Title from '../../../components/title';
-import { CodeSnippet, LN, Signature } from '../../../components/code';
+import { Component } from "react";
+import Slide from "../../../components/slide";
+import Title from "../../../components/title";
+import { CodeSnippet, LN, Signature } from "../../../components/code";
 
 export default () => (
-  <Slide basePath="/slides/serverless" current={7} total={17}>
-    <Title>
-      Google Cloud Function
-    </Title>
+  <Slide
+    title="Google Cloud Function"
+    basePath="/slides/serverless"
+    current={7}
+    total={17}
+  >
+    <Title>Google Cloud Function</Title>
     <Signature>
       <CodeSnippet>
         <LN>1</LN>
