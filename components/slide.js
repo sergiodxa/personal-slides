@@ -8,6 +8,7 @@ import getKeyName from "../lib/get-key-name";
 import { ThemeProvider, ThemeConsumer } from "../lib/theme";
 import isServer from "../lib/is-server";
 import { styles } from "../lib/nprogress";
+import { event } from "../lib/analytics";
 
 let progressTimer = null;
 Router.onRouteChangeStart = () => {
@@ -39,8 +40,12 @@ export default class extends Component {
     dark: false
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener("keydown", this.handleKey);
+    await event({
+      action: "slide view",
+      description: `User accessed ${window.location.pathname}`
+    });
   }
 
   componentWillUnmount() {
@@ -72,12 +77,16 @@ export default class extends Component {
     if (this.nextSlideNumber <= this.props.total) {
       return `${this.props.basePath}/${this.nextSlideNumber}`;
     } else {
-      return `/${this.props.basePath}/1`;
+      return `${this.props.basePath}/1`;
     }
   }
 
-  nextSlide = () => {
-    Router.push(this.nextSlideURL);
+  nextSlide = async () => {
+    await Router.push(this.nextSlideURL);
+    await event({
+      action: "slide view",
+      description: `User accessed ${window.location.pathname}`
+    });
   };
 
   get prevSlideNumber() {
@@ -92,8 +101,12 @@ export default class extends Component {
     }
   }
 
-  prevSlide = () => {
-    Router.push(this.prevSlideURL);
+  prevSlide = async () => {
+    await Router.push(this.prevSlideURL);
+    await event({
+      action: "slide view",
+      description: `User accessed ${window.location.pathname}`
+    });
   };
 
   render() {
