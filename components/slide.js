@@ -144,6 +144,10 @@ export default class extends Component {
                     background-color: ${dark ? "#ff0099" : "black"};
                     color: white;
                   }
+
+                  :root {
+                    --color: ${dark ? "#ff0099" : "black"};
+                  }
                 `}</style>
                 <style jsx global>{styles}</style>
                 <style jsx>{`
