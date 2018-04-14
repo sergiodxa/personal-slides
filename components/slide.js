@@ -1,9 +1,11 @@
 import { Component } from "react";
 import Head from "next/head";
 import Router from "next/router";
-import { number, string } from "prop-types";
+import { bool, number, string } from "prop-types";
 import cn from "classnames";
 import getKeyName from "../lib/get-key-name";
+import { ThemeProvider, ThemeConsumer } from "../lib/theme";
+import isServer from "../lib/is-server";
 
 export default class extends Component {
   static propTypes = {
@@ -11,12 +13,14 @@ export default class extends Component {
     title: string.isRequired,
     basePath: string.isRequired,
     current: number.isRequired,
-    total: number.isRequired
+    total: number.isRequired,
+    dark: bool
   };
 
   static defaultProps = {
-    className: '',
-    title: "Slides"
+    className: "",
+    title: "Slides",
+    dark: false
   };
 
   componentDidMount() {
@@ -44,76 +48,89 @@ export default class extends Component {
     }
   };
 
-  nextSlide = event => {
-    if (this.nextSlideNumber <= this.props.total) {
-      Router.push(`${this.props.basePath}/${this.nextSlideNumber}`);
-    } else {
-      Router.push(`/${this.props.basePath}/1`);
-    }
-  };
-
-  prevSlide = event => {
-    if (this.prevSlideNumber > 0) {
-      Router.push(`${this.props.basePath}/${this.prevSlideNumber}`);
-    } else {
-      Router.push(`${this.props.basePath}/${this.props.total}`);
-    }
-  };
-
   get nextSlideNumber() {
     return this.props.current + 1;
   }
+
+  get nextSlideURL() {
+    if (this.nextSlideNumber <= this.props.total) {
+      return `${this.props.basePath}/${this.nextSlideNumber}`;
+    } else {
+      return `/${this.props.basePath}/1`;
+    }
+  }
+
+  nextSlide = () => {
+    Router.push(this.nextSlideURL);
+  };
 
   get prevSlideNumber() {
     return this.props.current - 1;
   }
 
+  get prevSlideURL() {
+    if (this.prevSlideNumber > 0) {
+      return `${this.props.basePath}/${this.prevSlideNumber}`;
+    } else {
+      return `${this.props.basePath}/${this.props.total}`;
+    }
+  }
+
+  prevSlide = () => {
+    Router.push(this.prevSlideURL);
+  };
+
   render() {
-    const className = cn(this.props.className, {
-      dark: "dark" in this.props
-    });
 
     return (
-      <main className={className}>
-        <Head>
-          <title>{this.props.title}</title>
-        </Head>
+      <ThemeProvider value={this.props.dark}>
+        <ThemeConsumer>
+          {dark => {
+            const className = cn(this.props.className, { dark });
 
-        <div>
-          {this.props.children}
-        </div>
+            return (
+              <main className={className}>
+                <Head>
+                  <title>{this.props.title}</title>
+                </Head>
 
-        <style jsx global>{`
-          body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-              sans-serif;
-            font-size: 18px;
-            font-weight: 200;
-            transition: 300ms;
-          }
-          ::selection {
-            background-color: black;
-            color: white;
-          }
-        `}</style>
-        <style jsx>{`
-          main {
-            display: flex;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            align-items: center;
-            padding: 1em;
-            box-sizing: border-box;
-          }
-          main.dark {
-            background: black;
-            color: white;
-          }
-        `}</style>
-      </main>
+                <div>{this.props.children}</div>
+
+                <style jsx global>{`
+                  body {
+                    margin: 0;
+                    font-family: -apple-system, BlinkMacSystemFont, Segoe UI,
+                      Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+                      Helvetica Neue, sans-serif;
+                    font-size: 18px;
+                    font-weight: 200;
+                    transition: 300ms;
+                  }
+                  ::selection {
+                    background-color: ${dark ? "#ff0099" : "black"};
+                    color: white;
+                  }
+                `}</style>
+                <style jsx>{`
+                  main {
+                    display: flex;
+                    justify-content: center;
+                    height: 100vh;
+                    text-align: center;
+                    align-items: center;
+                    padding: 1em;
+                    box-sizing: border-box;
+                  }
+                  main.dark {
+                    background: black;
+                    color: white;
+                  }
+                `}</style>
+              </main>
+            );
+          }}
+        </ThemeConsumer>
+      </ThemeProvider>
     );
   }
 }
