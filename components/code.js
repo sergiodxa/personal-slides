@@ -1,11 +1,25 @@
-import { PureComponent } from "react";
+import { PureComponent, Fragment } from "react";
+import { bool, string } from "prop-types";
+import cn from "classnames";
 
 export class CodeSnippet extends PureComponent {
+  static propTypes = {
+    shell: bool,
+  }
+
+  static defaultProps = {
+    shell: false
+  }
+
   render() {
+    const className = cn({
+      shell: this.props.shell
+    })
+
     return (
       <div className="codesnippet">
         <pre>
-          <code>{this.props.children}</code>
+          <code className={className}>{this.props.children}</code>
         </pre>
         <style jsx>{`
           .codesnippet {
@@ -22,6 +36,9 @@ export class CodeSnippet extends PureComponent {
               DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
               serif;
             font-size: 13px;
+          }
+          .shell {
+            color: rgb(92, 230, 205);
           }
         `}</style>
       </div>
@@ -65,6 +82,35 @@ export class Signature extends PureComponent {
           }
         `}</style>
       </div>
+    );
+  }
+}
+
+export default class Code extends PureComponent {
+  static propTypes = {
+    children: string.isRequired,
+    shell: bool
+  };
+  static defaultProps = {
+    shell: false
+  };
+
+  render() {
+    const { shell } = this.props;
+    return (
+      <Signature>
+        <CodeSnippet shell={shell}>
+          {this.props.children.split("\n").map((code, number) => {
+            return (
+              <Fragment key={number}>
+                {!shell && <LN>{number + 1}</LN>}
+                <span dangerouslySetInnerHTML={{ __html: code }} />
+                <br />
+              </Fragment>
+            );
+          })}
+        </CodeSnippet>
+      </Signature>
     );
   }
 }
