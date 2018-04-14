@@ -1,5 +1,7 @@
 {
   "name": "personal-slides",
+  "description":
+    "This are the slides used on my talks, either in courses, workshops, etc.",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/sergiodxa/personal-slides.git",
