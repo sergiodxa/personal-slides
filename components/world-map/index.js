@@ -7,7 +7,7 @@ const FONT_FAMILY_SANS =
 const LOC_COUNT = 13;
 const LOC_ARRAY = new Array(LOC_COUNT).fill().map((_, i) => i);
 
-export default immutable(() => (
+export default () => (
   <div>
     <div className="world-map-container">
       <div className="world-map">
@@ -226,4 +226,4 @@ export default immutable(() => (
       }
     `}</style>
   </div>
-));
+);
