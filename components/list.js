@@ -1,37 +1,37 @@
-import { createContext } from "react";
-
-const { Provider, Consumer } = createContext(false);
+import Checkbox from "./icons/checkbox";
+import { ThemeConsumer } from "../lib/theme";
 
 export const List = ({ children, horizontal = false }) => (
   <ul>
-    <Provider value={horizontal}>{children}</Provider>
+    {children}
     <style jsx>{`
       ul {
-        padding-left: 1em;
         list-style-type: none;
         display: ${horizontal ? "flex" : "initial"};
+        padding-left: ${horizontal ? "0" : "1em"};
         justify-content: space-between;
       }
     `}</style>
   </ul>
 );
 
-export const Item = ({ children }) => (
-  <Consumer>
-    {horizontal => (
+export const Item = ({ children, active = true }) => (
+  <ThemeConsumer>
+    {dark => (
       <li>
+        <Checkbox
+          on={active}
+          bg={dark ? "white" : "black"}
+          fg={dark ? "black" : "white"}
+        />{" "}
         {children}
         <style jsx>{`
           li {
             text-align: left;
             line-height: 1.5;
           }
-          li:before {
-            content: ${horizontal ? "" : "▲"};
-            padding-right: 1em;
-          }
         `}</style>
       </li>
     )}
-  </Consumer>
+  </ThemeConsumer>
 );
