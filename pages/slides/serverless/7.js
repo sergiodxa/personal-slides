@@ -9,6 +9,7 @@ export default () => (
     basePath="/slides/serverless"
     current={7}
     total={17}
+    center
   >
     <H1>Google Cloud Function</H1>
     <Signature>

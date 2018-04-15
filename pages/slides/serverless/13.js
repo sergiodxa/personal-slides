@@ -10,6 +10,7 @@ export default () => (
     current={13}
     total={17}
     dark
+    center
   >
     <H1>Now Universal</H1>
     <Signature>

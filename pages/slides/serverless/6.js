@@ -9,6 +9,7 @@ export default () => (
     basePath="/slides/serverless"
     current={6}
     total={17}
+    center
   >
     <H1>AWS Lambda</H1>
     <Signature>

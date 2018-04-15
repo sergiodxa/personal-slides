@@ -9,6 +9,7 @@ export default () => (
     basePath="/slides/serverless"
     current={8}
     total={17}
+    center
   >
     <H1>Azure Function</H1>
     <Signature>
