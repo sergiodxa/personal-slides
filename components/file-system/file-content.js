@@ -11,16 +11,26 @@ function checkCache(id) {
   return undefined;
 }
 
+function highlight(content, type = false) {
+  if (type) {
+    hljs.highlight(type, content);
+  }
+  return hljs.highlightAuto(content);
+}
+
 export default class FileContent extends Component {
   static propTypes = {
     id: string.isRequired,
-    content: string.isRequired
+    content: string.isRequired,
+    contentType: string
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.id === prevState.id) return null;
     const { value } =
-      checkCache(nextProps.id) || hljs.highlightAuto(nextProps.content);
+      checkCache(nextProps.id) ||
+      highlight(nextProps.content, nextProps.contentType);
+    cache.set(nextProps.id, { value });
     return { id: nextProps.id, content: value };
   }
 
