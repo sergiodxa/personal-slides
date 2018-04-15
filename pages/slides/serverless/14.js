@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 
 export default () => (
   <Slide
@@ -11,6 +11,6 @@ export default () => (
     center
     dark
   >
-    <Title>When to use Serverless?</Title>
+    <H1>When to use Serverless?</H1>
   </Slide>
 );

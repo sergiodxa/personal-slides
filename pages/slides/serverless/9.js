@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 import { List, Item } from "../../../components/list";
 
 export default () => (
@@ -11,9 +11,9 @@ export default () => (
     total={17}
     center
   >
-    <Title>
+    <H1>
       What's <strong>not</strong> Serverless
-    </Title>
+    </H1>
     <List>
       <Item>
         <strong>Platform</strong> as a Service

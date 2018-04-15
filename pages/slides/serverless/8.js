@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 import { CodeSnippet, LN, Signature } from "../../../components/code";
 
 export default () => (
@@ -10,7 +10,7 @@ export default () => (
     current={8}
     total={17}
   >
-    <Title>Azure Function</Title>
+    <H1>Azure Function</H1>
     <Signature>
       <CodeSnippet>
         <LN>1</LN>

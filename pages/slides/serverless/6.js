@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 import { CodeSnippet, LN, Signature } from "../../../components/code";
 
 export default () => (
@@ -10,7 +10,7 @@ export default () => (
     current={6}
     total={17}
   >
-    <Title>AWS Lambda</Title>
+    <H1>AWS Lambda</H1>
     <Signature>
       <CodeSnippet>
         <LN>1</LN>

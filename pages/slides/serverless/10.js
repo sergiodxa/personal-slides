@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 
 export default () => (
   <Slide
@@ -10,6 +10,6 @@ export default () => (
     total={17}
     center
   >
-    <Title>What about Now.sh?</Title>
+    <H1>What about Now.sh?</H1>
   </Slide>
 );

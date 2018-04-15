@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 
 export default () => (
   <Slide
@@ -11,7 +11,7 @@ export default () => (
     dark
     center
   >
-    <Title>Now.sh</Title>
+    <H1>Now.sh</H1>
     <p>
       <strong>Platform</strong> as a Service and <strong>Serverless</strong>
     </p>

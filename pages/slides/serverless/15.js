@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 import { List, Item } from "../../../components/list";
 
 export default () => (
@@ -12,9 +12,9 @@ export default () => (
     center
     dark
   >
-    <Title>
+    <H1>
       <strong>Backend</strong> as a Service
-    </Title>
+    </H1>
     <p>Reduced development cost</p>
   </Slide>
 );

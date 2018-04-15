@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 
 export default () => (
   <Slide
@@ -11,7 +11,7 @@ export default () => (
     dark
     center
   >
-    <Title>Now Universal</Title>
+    <H1>Now Universal</H1>
     <p>
       <strong>Now</strong>, on Every Cloud
     </p>

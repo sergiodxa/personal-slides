@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 import { CodeSnippet, LN, Signature } from "../../../components/code";
 
 export default () => (
@@ -11,7 +11,7 @@ export default () => (
     total={17}
     dark
   >
-    <Title>Now Universal</Title>
+    <H1>Now Universal</H1>
     <Signature>
       <CodeSnippet>
         <LN>1</LN>

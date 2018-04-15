@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Slide from "../../../components/slide";
-import Title from "../../../components/title";
+import { H1 } from "../../../components/title";
 
 export default () => (
   <Slide
@@ -10,7 +10,7 @@ export default () => (
     total={17}
     center
   >
-    <Title>What's Serverless?</Title>
+    <H1>What's Serverless?</H1>
     <p>
       A software architecture where the developer doesn't need to care about
       server administration.
