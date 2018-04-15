@@ -1,7 +1,6 @@
 {
   "name": "personal-slides",
-  "description":
-    "This are the slides used on my talks, either in courses, workshops, etc.",
+  "description": "This are the slides used on my talks, either in courses, workshops, etc.",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/sergiodxa/personal-slides.git",
@@ -14,6 +13,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "highlight.js": "^9.12.0",
     "isomorphic-fetch": "^2.2.1",
     "next": "^5.1.0",
     "nprogress": "^0.2.0",

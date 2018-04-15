@@ -8,6 +8,7 @@ import getKeyName from "../lib/get-key-name";
 import { ThemeProvider, ThemeConsumer } from "../lib/theme";
 import isServer from "../lib/is-server";
 import { styles } from "../lib/nprogress";
+import { styles as hljsStyles } from "../lib/highlight-styles";
 import { event } from "../lib/analytics";
 
 let progressTimer = null;
@@ -152,6 +153,9 @@ export default class extends Component {
                 `}</style>
                 <style jsx global>
                   {styles}
+                </style>
+                <style jsx global>
+                  {hljsStyles}
                 </style>
                 <style jsx>{`
                   main {
