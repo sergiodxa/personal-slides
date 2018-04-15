@@ -142,12 +142,12 @@ export default class extends Component {
                     transition: 300ms;
                   }
                   ::selection {
-                    background-color: ${dark ? "#50e3c2" : "black"};
+                    background-color: ${dark ? "#ff0099" : "black"};
                     color: white;
                   }
 
                   :root {
-                    --color: ${dark ? "#50e3c2" : "black"};
+                    --color: ${dark ? "#ff0099" : "black"};
                   }
                 `}</style>
                 <style jsx global>
