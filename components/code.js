@@ -54,8 +54,11 @@ export class LN extends PureComponent {
         <style jsx>{`
           span {
             color: #4a4a4a;
-            margin-right: 20px;
+            margin-right: 10px;
             user-select: none;
+            text-align: right;
+            width: 1.5em;
+            display: inline-block;
           }
         `}</style>
       </span>
