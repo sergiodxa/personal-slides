@@ -23,7 +23,6 @@ Router.onRouteChangeError = () => {
   clearTimeout(progressTimer);
 };
 
-
 export default class extends Component {
   static propTypes = {
     className: string,
@@ -116,6 +115,8 @@ export default class extends Component {
       Router.prefetch(this.nextSlideURL);
     }
 
+    const { center } = this.props;
+
     return (
       <ThemeProvider value={this.props.dark}>
         <ThemeConsumer>
@@ -149,13 +150,15 @@ export default class extends Component {
                     --color: ${dark ? "#50e3c2" : "black"};
                   }
                 `}</style>
-                <style jsx global>{styles}</style>
+                <style jsx global>
+                  {styles}
+                </style>
                 <style jsx>{`
                   main {
                     display: flex;
                     justify-content: center;
                     height: 100vh;
-                    text-align: center;
+                    text-align: ${center ? "center" : "left"};
                     align-items: center;
                     padding: 1em;
                     box-sizing: border-box;
