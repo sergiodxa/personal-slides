@@ -22,11 +22,9 @@ function TypeCase({ item, onPick, active, files }) {
   );
 }
 
-export function Directory({ files, name, children, onPick, active, first }) {
-  const className = cn({ active });
-
+export function Directory({ files, id, name, children, onPick, active }) {
   return (
-    <ul className={className}>
+    <ul>
       <li>{name}</li>
 
       {children
@@ -41,20 +39,13 @@ export function Directory({ files, name, children, onPick, active, first }) {
           text-align: left;
           list-style-type: none;
         }
-
-        .first {
-          padding-left: 0;
-        }
-
-        li {
-        }
       `}</style>
     </ul>
   );
 }
 
-export function File({ name, id, onPick, active = false }) {
-  const className = cn({ active });
+export function File({ name, id, onPick, active = '' }) {
+  const className = cn({ active: id === active });
 
   return (
     <li onClick={onPick(id)} className={className}>
@@ -66,6 +57,7 @@ export function File({ name, id, onPick, active = false }) {
         }
 
         .active {
+          font-weight: bold;
         }
       `}</style>
     </li>

@@ -30,7 +30,11 @@ export default class FileSystem extends Component {
 
     return (
       <div>
-        <FileTree files={files} onPick={this.handlePick} />
+        <FileTree
+          active={this.state.file}
+          files={files}
+          onPick={this.handlePick}
+        />
         <FileContent {...files[this.state.file]} />
 
         <style jsx>{`
