@@ -1,4 +1,5 @@
 import cn from "classnames";
+import * as colors from "../../lib/colors";
 
 export function Icon({ type }) {
   const className = cn({ [type]: type });
@@ -54,7 +55,6 @@ export function Title({ children }) {
           text-align: center;
           width: 200px;
           margin: auto;
-          border-radius: 4px;
           padding: 4px;
           user-select: none;
         }
@@ -69,6 +69,8 @@ export function Header({ children }) {
       {children}
       <style jsx>{`
         div {
+          background: ${colors.black};
+          border-radius: 4px 4px 0 0;
           width: 100%;
           height: 36px;
           position: absolute;
@@ -105,11 +107,13 @@ export function Body({ children }) {
       <style jsx>{`
         div {
           width: 100%;
-          height: 100%;
+          height: calc(100% - 43px);
           border-radius: 5px;
-          padding-top: 43px;
+          top: 43px;
+          box-sizing: border-box;
           position: absolute;
-          overflow: auto;
+          overflow: scroll;
+          padding-bottom: 0.5em;
         }
       `}</style>
     </div>
@@ -141,9 +145,10 @@ export function Terminal({ children }) {
       <style jsx>{`
         div {
           width: 450px;
-          height: 290px;
+          height: 300px;
           border-radius: 5px;
           background: #000;
+          margin: 0 auto;
         }
       `}</style>
     </div>
