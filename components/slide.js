@@ -10,6 +10,7 @@ import isServer from "../lib/is-server";
 import { styles } from "../lib/nprogress";
 import { styles as hljsStyles } from "../lib/highlight-styles";
 import { event } from "../lib/analytics";
+import * as colors from "../lib/colors";
 
 let progressTimer = null;
 Router.onRouteChangeStart = () => {
@@ -30,18 +31,24 @@ export default class extends Component {
     title: string.isRequired,
     basePath: string.isRequired,
     current: number.isRequired,
-    total: number.isRequired,
+    total: number,
+    next: string,
+    prev: string,
     dark: bool
   };
 
   static defaultProps = {
     className: "",
     title: "Slides",
-    dark: false
+    dark: false,
+    total: 1
   };
 
   async componentDidMount() {
-    window.addEventListener("keydown", this.handleKey);
+    const { total, next, prev } = this.props;
+    if (total > 1 || next || prev) {
+      window.addEventListener("keydown", this.handleKey);
+    }
     await event({
       action: "slide view",
       description: `User accessed ${window.location.pathname}`
@@ -74,14 +81,25 @@ export default class extends Component {
   }
 
   get nextSlideURL() {
-    if (this.nextSlideNumber <= this.props.total) {
-      return `${this.props.basePath}/${this.nextSlideNumber}`;
+    const { total, basePath, next } = this.props;
+
+    if (next) {
+      return next.startsWith(basePath) ? next : `${basePath}/${next}`
+    }
+
+    if (next === null) {
+      return;
+    }
+
+    if (this.nextSlideNumber <= total) {
+      return `${basePath}/${this.nextSlideNumber}`;
     } else {
-      return `${this.props.basePath}/1`;
+      return `${basePath}/1`;
     }
   }
 
   nextSlide = async () => {
+    if (this.nextSlideURL === null) return;
     await Router.push(this.nextSlideURL);
     await event({
       action: "slide view",
@@ -94,14 +112,25 @@ export default class extends Component {
   }
 
   get prevSlideURL() {
+    const { total, basePath, prev } = this.props;
+
+    if (prev) {
+      return prev.startsWith(basePath) ? prev : `${basePath}/${prev}`
+    }
+
+    if (prev === null) {
+      return null;
+    }
+
     if (this.prevSlideNumber > 0) {
-      return `${this.props.basePath}/${this.prevSlideNumber}`;
+      return `${basePath}/${this.prevSlideNumber}`;
     } else {
-      return `${this.props.basePath}/${this.props.total}`;
+      return `${basePath}/1`;
     }
   }
 
   prevSlide = async () => {
+    if (this.prevSlideURL === null) return;
     await Router.push(this.prevSlideURL);
     await event({
       action: "slide view",
@@ -143,12 +172,12 @@ export default class extends Component {
                     transition: 300ms;
                   }
                   ::selection {
-                    background-color: ${dark ? "#ff0099" : "black"};
+                    background-color: ${dark ? colors.pink : colors.black};
                     color: white;
                   }
 
                   :root {
-                    --color: ${dark ? "#ff0099" : "black"};
+                    --color: ${dark ? colors.pink : colors.black};
                   }
                 `}</style>
                 <style jsx global>
