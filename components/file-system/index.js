@@ -1,4 +1,5 @@
 import { Component, Fragment } from "react";
+import Router, { withRouter } from "next/router";
 import { objectOf, arrayOf, shape, oneOf, string } from "prop-types";
 
 import FileTree from "./file-tree";
@@ -12,7 +13,7 @@ const fileType = shape({
   children: arrayOf(string)
 });
 
-export default class FileSystem extends Component {
+class FileSystem extends Component {
   static propTypes = {
     files: objectOf(fileType)
   };
@@ -21,8 +22,28 @@ export default class FileSystem extends Component {
     file: this.props.defaultFile
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!nextProps.router) return null;
+    if (
+      nextProps.router.query.file &&
+      nextProps.router.query.file !== prevState.file
+    ) {
+      return { file: nextProps.router.query.file };
+    }
+    return null;
+  }
+
   handlePick = file => () => {
-    this.setState({ file });
+    const { pathname, query } = Router;
+    this.setState({ file }, () =>
+      Router.replace(
+        { pathname, query: { ...query, file } },
+        { pathname, query: { ...query, file } },
+        {
+          shallow: true
+        }
+      )
+    );
   };
 
   render() {
@@ -65,3 +86,5 @@ export default class FileSystem extends Component {
     );
   }
 }
+
+export default withRouter(FileSystem);
