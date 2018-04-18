@@ -10,6 +10,6 @@ export default () => (
     total={17}
     center
   >
-    <H1>Introduction to Serverless</H1>
+    <H1>Introduction to <strong>Serverless</strong></H1>
   </Slide>
 );
