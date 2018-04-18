@@ -25,6 +25,11 @@ Router.onRouteChangeError = () => {
   clearTimeout(progressTimer);
 };
 
+function removeSlash(string) {
+  if (string[0] === "/") return string.slice(1);
+  return string;
+}
+
 export default class extends Component {
   static propTypes = {
     className: string,
@@ -84,7 +89,9 @@ export default class extends Component {
     const { total, basePath, next } = this.props;
 
     if (next) {
-      return next.startsWith(basePath) ? next : `${basePath}/${next}`
+      return next.startsWith(basePath)
+        ? next
+        : `${basePath}/${removeSlash(next)}`;
     }
 
     if (next === null) {
@@ -115,7 +122,9 @@ export default class extends Component {
     const { total, basePath, prev } = this.props;
 
     if (prev) {
-      return prev.startsWith(basePath) ? prev : `${basePath}/${prev}`
+      return prev.startsWith(basePath)
+        ? prev
+        : `${basePath}/${removeSlash(prev)}`;
     }
 
     if (prev === null) {
