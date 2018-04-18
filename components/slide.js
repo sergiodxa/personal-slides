@@ -30,7 +30,7 @@ export default class extends Component {
     className: string,
     title: string.isRequired,
     basePath: string.isRequired,
-    current: number.isRequired,
+    current: number,
     total: number,
     next: string,
     prev: string,
