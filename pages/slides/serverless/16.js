@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Slide from "../../../components/slide";
-import { H1 } from "../../../components/title";
-import { List, Item } from "../../../components/list";
+import Slide from "components/slide";
+import { H1 } from "components/title";
+import { List, Item } from "components/list";
 
 export default () => (
   <Slide

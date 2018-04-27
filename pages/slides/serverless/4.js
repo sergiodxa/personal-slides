@@ -1,8 +1,8 @@
 import { Component } from "react";
-import Slide from "../../../components/slide";
-import { H1 } from "../../../components/title";
-import { List, Item } from "../../../components/list";
-import Link from "../../../components/link";
+import Slide from "components/slide";
+import { H1 } from "components/title";
+import { List, Item } from "components/list";
+import Link from "components/link";
 
 const url = {
   graph: "https://graph.cool/",

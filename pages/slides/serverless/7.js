@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Slide from "../../../components/slide";
-import { H1 } from "../../../components/title";
-import { CodeSnippet, LN, Signature } from "../../../components/code";
+import Slide from "components/slide";
+import { H1 } from "components/title";
+import { CodeSnippet, LN, Signature } from "components/code";
 
 export default () => (
   <Slide

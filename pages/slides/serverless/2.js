@@ -1,6 +1,6 @@
 import { Component } from "react";
-import Slide from "../../../components/slide";
-import { H1 } from "../../../components/title";
+import Slide from "components/slide";
+import { H1 } from "components/title";
 
 export default () => (
   <Slide
