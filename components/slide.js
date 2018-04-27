@@ -53,6 +53,7 @@ export default class extends Component {
     const { total, next, prev } = this.props;
     if (total > 1 || next || prev) {
       window.addEventListener("keydown", this.handleKey);
+      window.addEventListener("click", this.handleClick);
     }
     await event({
       action: "slide view",
@@ -62,6 +63,7 @@ export default class extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("keydown", this.handleKey);
+    window.removeEventListener("click", this.handleClick);
   }
 
   handleKey = event => {
@@ -81,6 +83,22 @@ export default class extends Component {
     }
   };
 
+  handleClick = event => {
+    const $body = document.body;
+
+    const target = event.target;
+    const width = $body.clientWidth;
+    const x = event.x;
+
+    if (target !== this.main) return null;
+
+    if (width / 2 < x) {
+      this.nextSlide(event);
+    } else {
+      this.prevSlide(event);
+    }
+  };
+
   get nextSlideNumber() {
     return this.props.current + 1;
   }
@@ -91,7 +109,9 @@ export default class extends Component {
     if (next) {
       return next.startsWith(basePath)
         ? next
-        : `${basePath}/${removeSlash(next)}`;
+        : next === "/"
+          ? basePath
+          : `${basePath}/${removeSlash(next)}`;
     }
 
     if (next === null) {
@@ -124,7 +144,9 @@ export default class extends Component {
     if (prev) {
       return prev.startsWith(basePath)
         ? prev
-        : `${basePath}/${removeSlash(prev)}`;
+        : prev === "/"
+          ? basePath
+          : `${basePath}/${removeSlash(prev)}`;
     }
 
     if (prev === null) {
@@ -154,7 +176,7 @@ export default class extends Component {
       Router.prefetch(this.nextSlideURL);
     }
 
-    const { center } = this.props;
+    const { center, note } = this.props;
 
     return (
       <ThemeProvider value={this.props.dark}>
@@ -163,12 +185,18 @@ export default class extends Component {
             const className = cn(this.props.className, { dark });
 
             return (
-              <main className={className}>
+              <main className={className} ref={element => this.main = element}>
                 <Head>
                   <title>{this.props.title}</title>
+                  <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                  />
                 </Head>
 
                 <div>{this.props.children}</div>
+
+                <blockquote>{note}</blockquote>
 
                 <style jsx global>{`
                   body {
@@ -208,6 +236,20 @@ export default class extends Component {
                   main.dark {
                     background: black;
                     color: white;
+                  }
+                `}</style>
+
+                <style jsx>{`
+                  blockquote {
+                    display: none;
+                  }
+                  @media (max-width: 649px) {
+                    blockquote {
+                      display: flex;
+                    }
+                    div {
+                      display: none;
+                    }
                   }
                 `}</style>
               </main>
