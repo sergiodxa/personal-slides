@@ -2,7 +2,7 @@ import { Component } from "react";
 import hljs from "highlight.js";
 import { string } from "prop-types";
 
-import Code from "../code";
+import Code from "components/code";
 
 const cache = new Map();
 

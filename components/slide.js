@@ -4,13 +4,13 @@ import Router from "next/router";
 import { bool, number, string } from "prop-types";
 import cn from "classnames";
 import NProgress from "nprogress";
-import getKeyName from "../lib/get-key-name";
-import { ThemeProvider, ThemeConsumer } from "../lib/theme";
-import isServer from "../lib/is-server";
-import { styles } from "../lib/nprogress";
-import { styles as hljsStyles } from "../lib/highlight-styles";
-import { event } from "../lib/analytics";
-import * as colors from "../lib/colors";
+import getKeyName from "lib/get-key-name";
+import { ThemeProvider, ThemeConsumer } from "lib/theme";
+import isServer from "lib/is-server";
+import { styles } from "lib/nprogress";
+import { styles as hljsStyles } from "lib/highlight-styles";
+import { event } from "lib/analytics";
+import * as colors from "lib/colors";
 
 let progressTimer = null;
 Router.onRouteChangeStart = () => {

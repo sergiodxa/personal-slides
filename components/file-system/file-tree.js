@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import cn from "classnames";
 
-import { H3 } from "../title";
-import Case from "../case";
+import { H3 } from "components/title";
+import Case from "components/case";
 
 function TypeCase({ item, onPick, active, files }) {
   return (

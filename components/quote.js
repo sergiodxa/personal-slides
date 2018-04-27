@@ -1,4 +1,4 @@
-import { grey } from "../lib/colors"
+import { grey } from "lib/colors"
 
 export default ({ children }) => (
   <blockquote>

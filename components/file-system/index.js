@@ -2,8 +2,8 @@ import { Component, Fragment } from "react";
 import Router, { withRouter } from "next/router";
 import { objectOf, arrayOf, shape, oneOf, string } from "prop-types";
 
-import FileTree from "./file-tree";
-import FileContent from "./file-content";
+import FileTree from "components/file-system/file-tree";
+import FileContent from "components/file-system/file-content";
 
 const fileType = shape({
   id: string.isRequired,

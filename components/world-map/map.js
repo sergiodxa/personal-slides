@@ -1,5 +1,5 @@
-import { ThemeConsumer } from "../../lib/theme";
-import * as colors from "../../lib/colors";
+import { ThemeConsumer } from "lib/theme";
+import * as colors from "lib/colors";
 
 export default () => (
   <ThemeConsumer>

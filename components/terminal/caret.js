@@ -1,4 +1,4 @@
-import { white } from "../../lib/colors"
+import { white } from "lib/colors"
 
 export default () => (
   <span>

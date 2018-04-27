@@ -1,5 +1,5 @@
-import Checkbox from "./icons/checkbox";
-import { ThemeConsumer } from "../lib/theme";
+import Checkbox from "components/icons/checkbox";
+import { ThemeConsumer } from "lib/theme";
 
 export const List = ({
   children,

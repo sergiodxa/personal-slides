@@ -1,7 +1,7 @@
 import React from "react";
-import Map from "./map";
-import { ThemeConsumer } from "../../lib/theme";
-import * as colors from "../../lib/colors";
+import Map from "component/world-map/map";
+import { ThemeConsumer } from "lib/theme";
+import * as colors from "lib/colors";
 
 const FONT_FAMILY_SANS =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';

@@ -1,5 +1,5 @@
 import cn from "classnames";
-import * as colors from "../../lib/colors";
+import * as colors from "lib/colors";
 
 export function Icon({ type }) {
   const className = cn({ [type]: type });
