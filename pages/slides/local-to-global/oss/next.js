@@ -20,7 +20,7 @@ export default () => (
     <H2>A minimalistic framework for server- rendered React applications</H2>
 
     <H3>
-      <Link href="https://github.com/zeit/next">zeit.co/next</Link>
+      <Link href="https://nextjs.org">nextjs.org</Link>
     </H3>
 
     <style jsx>{`
