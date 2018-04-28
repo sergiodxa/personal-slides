@@ -1,5 +1,5 @@
 import React from "react";
-import Map from "component/world-map/map";
+import Map from "components/world-map/map";
 import { ThemeConsumer } from "lib/theme";
 import * as colors from "lib/colors";
 
