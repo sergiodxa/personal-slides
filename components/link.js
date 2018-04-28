@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-export default ({ children, href, external }) => {
+export default ({ children, href, external: _external }) => {
+  const external = !href.startsWith("/") || _external;
+
   if (external) {
     return (
       <a href={href} target="_blank">
@@ -17,6 +19,7 @@ export default ({ children, href, external }) => {
       </a>
     );
   }
+
   return (
     <Link href={href}>
       <a href={href}>
