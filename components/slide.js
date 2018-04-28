@@ -243,7 +243,7 @@ export default class extends Component {
                   blockquote {
                     display: none;
                   }
-                  @media (max-width: 649px) {
+                  @media (max-width: 375px){
                     blockquote {
                       display: flex;
                     }
