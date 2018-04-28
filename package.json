@@ -12,13 +12,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "babel-plugin-module-resolver": "^3.1.1",
     "classnames": "^2.2.5",
     "highlight.js": "^9.12.0",
     "isomorphic-fetch": "^2.2.1",
+    "ms": "^2.1.1",
     "next": "^5.1.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.6.1",
+    "raw-loader": "^0.5.1",
     "react": "^16.3.1",
-    "react-dom": "^16.3.1"
+    "react-dom": "^16.3.1",
+    "react-keyframes": "^0.2.3",
+    "url-loader": "^1.0.1"
   }
 }
