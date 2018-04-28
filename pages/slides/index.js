@@ -20,7 +20,7 @@ export default () => (
         </Link>
       </Item>
       <Item>
-        <Link href="/slides/local-to-global/main">
+        <Link href="/slides/local-to-global">
           From <strong>Local</strong> to <strong>Global</strong> with a Single
           Command
         </Link>
