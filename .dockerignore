@@ -1,0 +1,10 @@
+*
+!components
+!data
+!lib
+!pages
+!static
+!.babelrc
+!next.config.js
+!package.json
+!yarn.lock
