@@ -16,7 +16,7 @@ export default () => (
   <Slide
     title="Use Case: Bonus"
     basePath="/slides/micro-frontends"
-    next="thanks"
+    next="questions"
     prev="next/use-case-trulia"
     center
     dark
