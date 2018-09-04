@@ -3,27 +3,11 @@ import Head from "next/head";
 import Router from "next/router";
 import { bool, number, string } from "prop-types";
 import cn from "classnames";
-import NProgress from "nprogress";
 import getKeyName from "lib/get-key-name";
 import { ThemeProvider, ThemeConsumer } from "lib/theme";
 import isServer from "lib/is-server";
-import { styles } from "lib/nprogress";
-import { styles as hljsStyles } from "lib/highlight-styles";
-import { event } from "lib/analytics";
+import { styles } from "lib/highlight-styles";
 import * as colors from "lib/colors";
-
-let progressTimer = null;
-Router.onRouteChangeStart = () => {
-  progressTimer = setTimeout(NProgress.start, 300);
-};
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-  clearTimeout(progressTimer);
-};
-Router.onRouteChangeError = () => {
-  NProgress.done();
-  clearTimeout(progressTimer);
-};
 
 function removeSlash(string) {
   if (string[0] === "/") return string.slice(1);
@@ -39,14 +23,16 @@ export default class extends Component {
     total: number,
     next: string,
     prev: string,
-    dark: bool
+    dark: bool,
+    split: bool
   };
 
   static defaultProps = {
     className: "",
     title: "Slides",
     dark: false,
-    total: 1
+    total: 1,
+    split: false
   };
 
   async componentDidMount() {
@@ -55,10 +41,6 @@ export default class extends Component {
       window.addEventListener("keydown", this.handleKey);
       window.addEventListener("click", this.handleClick);
     }
-    await event({
-      action: "slide view",
-      description: `User accessed ${window.location.pathname}`
-    });
   }
 
   componentWillUnmount() {
@@ -128,10 +110,6 @@ export default class extends Component {
   nextSlide = async () => {
     if (this.nextSlideURL === null) return;
     await Router.push(this.nextSlideURL);
-    await event({
-      action: "slide view",
-      description: `User accessed ${window.location.pathname}`
-    });
   };
 
   get prevSlideNumber() {
@@ -139,7 +117,7 @@ export default class extends Component {
   }
 
   get prevSlideURL() {
-    const { total, basePath, prev } = this.props;
+    const { basePath, prev } = this.props;
 
     if (prev) {
       return prev.startsWith(basePath)
@@ -163,10 +141,6 @@ export default class extends Component {
   prevSlide = async () => {
     if (this.prevSlideURL === null) return;
     await Router.push(this.prevSlideURL);
-    await event({
-      action: "slide view",
-      description: `User accessed ${window.location.pathname}`
-    });
   };
 
   render() {
@@ -176,7 +150,7 @@ export default class extends Component {
       Router.prefetch(this.nextSlideURL);
     }
 
-    const { center, note } = this.props;
+    const { center, split } = this.props;
 
     return (
       <ThemeProvider value={this.props.dark}>
@@ -185,7 +159,10 @@ export default class extends Component {
             const className = cn(this.props.className, { dark });
 
             return (
-              <main className={className} ref={element => this.main = element}>
+              <main
+                className={className}
+                ref={element => (this.main = element)}
+              >
                 <Head>
                   <title>{this.props.title}</title>
                   <meta
@@ -194,9 +171,7 @@ export default class extends Component {
                   />
                 </Head>
 
-                <div>{this.props.children}</div>
-
-                <blockquote>{note}</blockquote>
+                {this.props.children}
 
                 <style jsx global>{`
                   body {
@@ -220,36 +195,20 @@ export default class extends Component {
                 <style jsx global>
                   {styles}
                 </style>
-                <style jsx global>
-                  {hljsStyles}
-                </style>
                 <style jsx>{`
                   main {
                     display: flex;
-                    justify-content: center;
+                    justify-content: ${split ? "space-around" : "center"};
                     height: 100vh;
                     text-align: ${center ? "center" : "left"};
                     align-items: center;
                     padding: 1em;
                     box-sizing: border-box;
+                    flex-direction: ${split ? "row" : "column"};
                   }
                   main.dark {
                     background: black;
                     color: white;
-                  }
-                `}</style>
-
-                <style jsx>{`
-                  blockquote {
-                    display: none;
-                  }
-                  @media (max-width: 375px){
-                    blockquote {
-                      display: flex;
-                    }
-                    div {
-                      display: none;
-                    }
                   }
                 `}</style>
               </main>
