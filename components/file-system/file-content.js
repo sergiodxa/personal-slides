@@ -33,11 +33,8 @@ export default class FileContent extends Component {
     cache.set(nextProps.id, { value });
     return { id: nextProps.id, content: value };
   }
-
-  constructor(props) {
-    super(props);
-    this.state = FileContent.getDerivedStateFromProps(props, {});
-  }
+  
+  state = FileContent.getDerivedStateFromProps(this.props, {});
 
   render() {
     const { content } = this.state;
