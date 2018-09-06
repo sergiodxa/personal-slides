@@ -25,6 +25,11 @@ export default () => (
           Command
         </Link>
       </Item>
+      <Item>
+        <Link href="/slides/micro-frontends">
+          Micro Frontends con React & Next.js
+        </Link>
+      </Item>
     </List>
   </Slide>
 );
