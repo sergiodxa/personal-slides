@@ -30,6 +30,11 @@ export default () => (
           Micro Frontends con React & Next.js
         </Link>
       </Item>
+      <Item>
+        <Link href="/slides/what-is-frontend">
+          What is, actually, Frontend Development?
+        </Link>
+      </Item>
     </List>
   </Slide>
 );
