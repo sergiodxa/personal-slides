@@ -4,9 +4,10 @@ import { ThemeConsumer } from "lib/theme";
 export const List = ({
   children,
   horizontal = false,
-  align = "space-between"
+  align = "space-between",
+  ...props
 }) => (
-  <ul>
+  <ul {...props}>
     {children}
     <style jsx>{`
       ul {
@@ -19,10 +20,10 @@ export const List = ({
   </ul>
 );
 
-export const Item = ({ children, active = true }) => (
+export const Item = ({ children, active = true, ...props }) => (
   <ThemeConsumer>
     {dark => (
-      <li>
+      <li {...props}>
         <Checkbox
           on={active}
           bg={dark ? "white" : "black"}

@@ -1,7 +1,7 @@
 import { grey } from "lib/colors"
 
-export default ({ children }) => (
-  <blockquote>
+export default ({ children, ...props }) => (
+  <blockquote {...props}>
     {children}
     <style jsx>{`
       hr {
