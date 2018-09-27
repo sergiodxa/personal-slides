@@ -1,15 +1,9 @@
-import { Component } from "react";
-import Slide from "components/slide";
-import { H1 } from "components/title";
+import QuestionsSlide from "components/slides/questions";
 
 export default () => (
-  <Slide
-    title="Questions?"
+  <QuestionsSlide
     basePath="/slides/serverless"
     current={17}
     total={17}
-    center
-  >
-    <H1>Questions?</H1>
-  </Slide>
+  />
 );
