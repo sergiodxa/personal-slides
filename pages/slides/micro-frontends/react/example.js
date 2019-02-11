@@ -12,30 +12,29 @@ ReadDOM.render(<ProductApp />, document.getElementById("product"));
 ReadDOM.render(<CheckoutApp />, document.getElementById("checkout"));
 `
 
-const mainAltJS = `import InspireApp from "@company/inspire";
-import SearchApp from "@company/search";
-import ProductApp from "@company/product";
-import CheckoutApp from "@company/checkout";
-
-const $inspire = document.getElementById("inspire");
+const mainAltJS = `const $inspire = document.getElementById("inspire");
 const $search = document.getElementById("search");
 const $product = document.getElementById("product");
 const $checkout = document.getElementById("checkout");
 
 if ($inspire) {
-  ReadDOM.render(<InspireApp />, $inspire);
+  import("@company/inspire")
+    .then(InspireApp => ReadDOM.render(<InspireApp />, $inspire));
 }
 
 if ($search) {
-  ReadDOM.render(<SearchApp />, $search);
+  import("@company/search")
+    .then(SearchApp => ReadDOM.render(<SearchApp />, $search));
 }
 
 if ($product) {
-  ReadDOM.render(<ProductApp />, $product);
+  import("@company/product")
+    .then(ProductApp => ReadDOM.render(<ProductApp />, $product));
 }
 
 if ($checkout) {
-  ReadDOM.render(<CheckoutApp />, $checkout);
+  import("@company/checkout")
+    .then(CheckoutApp => ReadDOM.render(<CheckoutApp />, $checkout));
 }
 `
 
