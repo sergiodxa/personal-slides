@@ -12,7 +12,7 @@ export default () => (
   >
     <H1>Cómo hacerlo con React.js</H1>
     <p>
-      Resulta ReactDOM se puede ejecutar varias veces en diferentes nodos
+      Resulta que ReactDOM se puede ejecutar varias veces en diferentes nodos
       <br />
       <br />
       Así que podríamos crear un componente por aplicación
