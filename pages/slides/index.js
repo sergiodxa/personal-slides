@@ -31,8 +31,8 @@ export default () => (
         </Link>
       </Item>
       <Item>
-        <Link href="/slides/what-is-frontend">
-          What is, actually, Frontend Development?
+        <Link href="/slides/react-hooks">
+          Introduction to the Hooked World of React
         </Link>
       </Item>
     </List>
