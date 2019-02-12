@@ -3,7 +3,7 @@ export const H1 = ({ children }) => (
     {children}
     <style jsx>{`
       h1 {
-        font-weight: lighter;
+        font-weight: normal;
       }
       h1 :global(strong) {
         font-weight: normal;
@@ -17,7 +17,7 @@ export const H2 = ({ children }) => (
     {children}
     <style jsx>{`
       h2 {
-        font-weight: lighter;
+        font-weight: normal;
       }
       h2 :global(strong) {
         font-weight: normal;
@@ -31,7 +31,7 @@ export const H3 = ({ children }) => (
     {children}
     <style jsx>{`
       h3 {
-        font-weight: lighter;
+        font-weight: normal;
       }
       h3 :global(strong) {
         font-weight: normal;
