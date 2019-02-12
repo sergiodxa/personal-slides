@@ -30,6 +30,7 @@ export class CodeSnippet extends PureComponent {
             margin: 0;
             overflow: scroll;
             padding: 10px 10px 10px 0;
+            max-height: 50vh;
           }
           code {
             font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
@@ -77,7 +78,7 @@ export class Signature extends PureComponent {
             margin: 40px;
             text-align: left;
             width: 70vw;
-            max-width: 448px;
+            max-width: 50vw;
           }
           .signature :global(em) {
             color: #ff0099;
@@ -92,14 +93,16 @@ export class Signature extends PureComponent {
 export default class Code extends PureComponent {
   static propTypes = {
     children: string.isRequired,
-    shell: bool
+    shell: bool,
+    plain: bool
   };
   static defaultProps = {
+    plain: false,
     shell: false
   };
 
   render() {
-    const { shell } = this.props;
+    const { shell, plain } = this.props;
     return (
       <Signature>
         <CodeSnippet shell={shell}>
@@ -107,7 +110,7 @@ export default class Code extends PureComponent {
             return (
               <Fragment key={number}>
                 {!shell && <LN>{number + 1}</LN>}
-                <span dangerouslySetInnerHTML={{ __html: code }} />
+                {plain ? <span>{code}</span> : <span dangerouslySetInnerHTML={{ __html: code }} />}
                 <br />
               </Fragment>
             );
